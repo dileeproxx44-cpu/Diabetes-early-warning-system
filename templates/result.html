@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="result-card">
+
+    <h2>
+
+        Prediction Result
+
+    </h2>
+
+    <!-- ========================= -->
+    <!-- HIGH RISK -->
+    <!-- ========================= -->
+
+    {% if risk_level == 'HIGH' %}
+
+        <h1 class="high-risk">
+
+            {{ result }}
+
+        </h1>
+
+    <!-- ========================= -->
+    <!-- MODERATE RISK -->
+    <!-- ========================= -->
+
+    {% elif risk_level == 'MODERATE' %}
+
+        <h1 style="color:orange;">
+
+            {{ result }}
+
+        </h1>
+
+    <!-- ========================= -->
+    <!-- LOW RISK -->
+    <!-- ========================= -->
+
+    {% else %}
+
+        <h1 class="low-risk">
+
+            {{ result }}
+
+        </h1>
+
+    {% endif %}
+
+    <!-- ========================= -->
+    <!-- PROBABILITY -->
+    <!-- ========================= -->
+
+    <h2>
+
+        Risk Probability:
+
+        {{ probability }}%
+
+    </h2>
+
+    <!-- ========================= -->
+    <!-- ALERT MESSAGE -->
+    <!-- ========================= -->
+
+    <div class="alert-box">
+
+        <h2>
+
+            Warning System
+
+        </h2>
+
+        <p>
+
+            {{ alert_message }}
+
+        </p>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- HEALTH TIPS -->
+    <!-- ========================= -->
+
+    <div class="tips-box">
+
+        <h2>
+
+            Health Suggestions
+
+        </h2>
+
+        <pre>
+
+{{ tips }}
+
+        </pre>
+
+    </div>
+
+</div>
+
+{% endblock %}

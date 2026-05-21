@@ -1,0 +1,78 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>
+
+        AI Disease Risk Prediction
+
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/styles.css' %}"
+    >
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <h1>
+
+            AI Diabetes Risk Prediction System
+
+        </h1>
+
+    </header>
+
+    <!-- NAVBAR -->
+<nav>
+
+    <a href="/">Home</a>
+
+    <a href="/predict/">Predict</a>
+
+    <a href="/dashboard/">Dashboard</a>
+
+    {% if user.is_authenticated %}
+
+        <a href="/accounts/logout/">
+
+            Logout
+
+        </a>
+
+    {% else %}
+
+        <a href="/accounts/login/">
+
+            Login
+
+        </a>
+
+        <a href="/accounts/register/">
+
+            Register
+
+        </a>
+
+    {% endif %}
+
+</nav>
+    <!-- PAGE CONTENT -->
+
+    {% block content %}
+
+    {% endblock %}
+
+</body>
+
+</html>

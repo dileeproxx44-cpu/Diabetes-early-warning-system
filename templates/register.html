@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="prediction-form">
+
+    <h2>
+
+        User Registration
+
+    </h2>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <label>
+
+            Username
+
+        </label>
+
+        <input
+            type="text"
+            name="username"
+            required
+        >
+
+        <label>
+
+            Email
+
+        </label>
+
+        <input
+            type="email"
+            name="email"
+            required
+        >
+
+        <label>
+
+            Password
+
+        </label>
+
+        <input
+            type="password"
+            name="password"
+            required
+        >
+
+        <button type="submit">
+
+            Register
+
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

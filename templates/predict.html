@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Enter Patient Details</h2>
+
+<form method="POST" class="prediction-form">
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit" id="predict-btn">
+
+        Predict Risk
+
+    </button>
+
+</form>
+
+<div id="loading">
+
+    Predicting using AI...
+
+</div>
+
+<script>
+
+    const form = document.querySelector('.prediction-form');
+
+    const loading = document.getElementById('loading');
+
+    form.addEventListener('submit', function () {
+
+        loading.style.display = 'block';
+
+    });
+
+</script>
+
+{% endblock %}

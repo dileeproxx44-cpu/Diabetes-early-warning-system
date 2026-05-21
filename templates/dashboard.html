@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="dashboard-page">
+
+    <h1 class="dashboard-title">
+        Healthcare Analytics Dashboard
+    </h1>
+
+    <!-- ========================= -->
+    <!-- ANALYTICS CARDS -->
+    <!-- ========================= -->
+
+    <div class="analytics-cards">
+
+        <div class="analytics-card">
+
+            <h2>Total Predictions</h2>
+
+            <h1>
+                {{ total_predictions }}
+            </h1>
+
+        </div>
+
+        <div class="analytics-card high-card">
+
+            <h2>High Risk Cases</h2>
+
+            <h1>
+                {{ high_risk_count }}
+            </h1>
+
+        </div>
+
+        <div class="analytics-card low-card">
+
+            <h2>Low Risk Cases</h2>
+
+            <h1>
+                {{ low_risk_count }}
+            </h1>
+
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- RISK ANALYTICS CHART -->
+    <!-- ========================= -->
+
+    <div class="chart-box">
+
+        <h2>Risk Analytics</h2>
+
+        <canvas id="riskChart"></canvas>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- RECENT PREDICTIONS -->
+    <!-- ========================= -->
+
+    <div class="table-container">
+
+        <h2>Recent Predictions</h2>
+
+        <table>
+
+            <tr>
+
+                <th>Patient ID</th>
+                <th>Patient Name</th>
+                <th>Result</th>
+                <th>Probability</th>
+                <th>Date</th>
+
+            </tr>
+
+            {% for prediction in recent_predictions %}
+
+            <tr>
+
+                <td>
+                    {{ prediction.patient.id }}
+                </td>
+
+                <td>
+                    {{ prediction.patient.patient_name }}
+                </td>
+
+                <td>
+                    {{ prediction.prediction_result }}
+                </td>
+
+                <td>
+                    {{ prediction.probability }}%
+                </td>
+
+                <td>
+                    {{ prediction.created_at }}
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- CHART.JS CDN -->
+<!-- ========================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- ========================= -->
+<!-- CHART SCRIPT -->
+<!-- ========================= -->
+
+<script>
+
+const highRisk = {{ high_risk_count }};
+
+const lowRisk = {{ low_risk_count }};
+
+const ctx = document.getElementById('riskChart').getContext('2d');
+
+new Chart(ctx, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: ['High Risk', 'Low Risk'],
+
+        datasets: [{
+
+            data: [highRisk, lowRisk],
+
+            backgroundColor: [
+
+                'red',
+                'green'
+
+            ],
+
+            borderWidth: 2
+
+        }]
+
+    },
+
+    options: {
+
+        responsive: true,
+
+        plugins: {
+
+            legend: {
+
+                labels: {
+
+                    font: {
+
+                        size: 18
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+});
+
+</script>
+
+{% endblock %}
