@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual Environment
+diseases/
+
+# Database
+db.sqlite3
+
+# VS Code
+.vscode/
+
+# Static cache
+staticfiles/
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# Environment variables
+.env
