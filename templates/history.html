@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="hx-container">
+
+  <h2 class="hx-title">Prediction History</h2>
+
+  <div class="hx-wrapper">
+    <table class="hx-table">
+
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Prediction</th>
+          <th>Probability</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        {% for prediction in predictions %}
+
+        <tr>
+
+          <td class="hx-date">
+            {{ prediction.created_at|date:"d M Y" }}
+          </td>
+
+          <td>
+            {% if "High" in prediction.prediction_result %}
+              <span class="hx-badge-high">{{ prediction.prediction_result }}</span>
+            {% else %}
+              <span class="hx-badge-low">{{ prediction.prediction_result }}</span>
+            {% endif %}
+          </td>
+
+          <td>
+            <div class="hx-prob-cell">
+              <span class="hx-prob-value">{{ prediction.probability }}%</span>
+              <div class="hx-prob-track">
+                <div
+                  class="hx-prob-fill {% if prediction.probability > 50 %}danger{% endif %}"
+                  style="width: {{ prediction.probability }}%;">
+                </div>
+              </div>
+            </div>
+          </td>
+
+        </tr>
+
+        {% empty %}
+
+        <tr class="hx-empty-row">
+          <td colspan="3">
+            <div class="hx-empty-state">
+              <div class="hx-empty-icon">🩺</div>
+              <p>No prediction history found</p>
+              <span>Your past predictions will appear here</span>
+            </div>
+          </td>
+        </tr>
+
+        {% endfor %}
+
+      </tbody>
+
+    </table>
+  </div>
+
+</div>
+
+{% endblock %}

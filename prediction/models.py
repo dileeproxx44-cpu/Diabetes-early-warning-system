@@ -22,22 +22,46 @@ class Patient(models.Model):
         ('ever', 'Ever'),
         ('not current', 'Not Current')
     ]
+    BP_CHOICES = [
+    ('no', 'No High Blood Pressure'),
+    ('yes', 'I Have High Blood Pressure'),
+    ]
+    HD_CHOICES = [
+    ('no', 'No Heart Disease'),
+    ('yes', 'I Have Heart Disease'),
+    ]
+    HBA1C_CHOICES = [
+    (5.0, 'Normal (Below 5.7%)'),
+    (6.0, 'Prediabetes (5.7% - 6.4%)'),
+    (7.0, 'Diabetes (6.5% - 7.0%)'),
+    (8.0, 'High Diabetes Risk (7.1% - 8.0%)'),
+    (9.0, 'Very High Risk (Above 8.0%)'),
+    ]
+    GLUCOSE_CHOICES = [
+    (80, '80 mg/dL (Normal)'),
+    (100, '100 mg/dL (Normal)'),
+    (120, '120 mg/dL (Prediabetes)'),
+    (140, '140 mg/dL (High)'),
+    (180, '180 mg/dL (Diabetes)'),
+    (220, '220 mg/dL (Very High)'),
+    (280, '280 mg/dL (Critical)'),
+    ]
 
     gender = models.CharField(max_length=20, choices=GENDER_CHOICES)
 
     age = models.FloatField()
 
-    hypertension = models.IntegerField()
+    hypertension = models.CharField(max_length=20, choices=BP_CHOICES)
 
-    heart_disease = models.IntegerField()
+    heart_disease = models.CharField(max_length=20, choices=HD_CHOICES)
 
     smoking_history = models.CharField(max_length=20, choices=SMOKING_CHOICES)
 
     bmi = models.FloatField()
 
-    HbA1c_level = models.FloatField()
+    HbA1c_level = models.FloatField(choices=HBA1C_CHOICES)
 
-    blood_glucose_level = models.FloatField()
+    blood_glucose_level = models.IntegerField(choices=GLUCOSE_CHOICES)
 
     email = models.EmailField()
 
@@ -65,7 +89,6 @@ class Prediction(models.Model):
 
     def __str__(self):
         return f"{self.patient.patient_name} - {self.prediction_result}"
-    
 # =====================================
 # ALERT MODEL
 # =====================================

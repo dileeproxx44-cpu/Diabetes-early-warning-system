@@ -2,9 +2,15 @@
 
 {% block content %}
 
-<h2>Enter Patient Details</h2>
+
 
 <form method="POST" class="prediction-form">
+
+
+    <h2 class="form-title">
+        Enter Patient Details
+    </h2>
+
 
     {% csrf_token %}
 
@@ -15,14 +21,9 @@
         Predict Risk
 
     </button>
+    
 
 </form>
-
-<div id="loading">
-
-    Predicting using AI...
-
-</div>
 
 <script>
 

@@ -36,7 +36,7 @@ def register_view(request):
 
         )
 
-        return redirect('login')
+        return redirect('home')
 
     return render(
 
@@ -79,7 +79,7 @@ def login_view(request):
 
             login(request, user)
 
-            return redirect('dashboard')
+            return redirect('home')
 
         else:
 

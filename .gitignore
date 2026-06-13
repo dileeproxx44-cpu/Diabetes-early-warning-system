@@ -1,21 +1,24 @@
+# Virtual Environment
+diseases/
+
 # Python
 __pycache__/
 *.pyc
 
-# Virtual Environment
-diseases/
-
 # Database
 db.sqlite3
+
+# Environment Variables
+.env
 
 # VS Code
 .vscode/
 
-# Static cache
+# Static collected files
 staticfiles/
 
-# Notebook checkpoints
-.ipynb_checkpoints/
+# Media files
+media/
 
-# Environment variables
-.env
+# Migrations (optional)
+*/migrations/*.pyc

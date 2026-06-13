@@ -11,6 +11,7 @@
         AI Disease Risk Prediction
 
     </title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 
     <link
         rel="stylesheet"
@@ -34,37 +35,55 @@
     </header>
 
     <!-- NAVBAR -->
-<nav>
+<nav class="navbar">
 
-    <a href="/">Home</a>
+    <div class="nav-left">
 
-    <a href="/predict/">Predict</a>
+        <a href="/">Home</a>
 
-    <a href="/dashboard/">Dashboard</a>
+        <a href="/predict/">Predict</a>
 
-    {% if user.is_authenticated %}
+        <a href="{% url 'profile' %}">Profile</a>
 
-        <a href="/accounts/logout/">
+        <a href="{% url 'history' %}">History</a>
 
-            Logout
+        
 
-        </a>
+        {% if user.email == "dileepkumarrouthu02@gmail.com" %}
+            <a href="{% url 'dashboard' %}">
+                Dashboard
+            </a>
+        {% endif %}
 
-    {% else %}
+    </div>
 
-        <a href="/accounts/login/">
+    
 
-            Login
+    <div class="nav-right">
 
-        </a>
+        {% if user.is_authenticated %}
 
-        <a href="/accounts/register/">
+            <span class="welcome-user">
+                👋 Welcome, {{ user.username }}
+            </span>
 
-            Register
+            <a href="/accounts/logout/">
+                Logout
+            </a>
 
-        </a>
+        {% else %}
 
-    {% endif %}
+            <a href="/accounts/login/">
+                Login
+            </a>
+
+            <a href="/accounts/register/">
+                Register
+            </a>
+
+        {% endif %}
+
+    </div>
 
 </nav>
     <!-- PAGE CONTENT -->
