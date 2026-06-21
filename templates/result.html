@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if email_sent %}
+<div class="email-success">
+  <div class="email-success-icon">✅</div>
+  <div class="email-success-body">
+    <p>Prediction Report Sent Successfully</p>
+    <strong>{{ patient_email }}</strong>
+  </div>
+  <div class="email-success-dot"></div>
+</div>
+{% endif %}
 
 <div class="result-card">
 

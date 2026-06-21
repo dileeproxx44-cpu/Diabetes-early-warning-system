@@ -13,7 +13,13 @@
     <form method="POST">
 
         {% csrf_token %}
-
+        {% if error %}
+<div class="error-message">
+  <div class="error-message-icon">⚠️</div>
+  <span class="error-message-text">{{ error }}</span>
+  <div class="error-message-dot"></div>
+</div>
+{% endif %}
         <label>
 
             Username

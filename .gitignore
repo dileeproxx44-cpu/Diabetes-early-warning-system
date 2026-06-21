@@ -22,3 +22,5 @@ media/
 
 # Migrations (optional)
 */migrations/*.pyc
+
+.env

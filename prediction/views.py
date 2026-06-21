@@ -48,7 +48,6 @@ def predict_view(request):
             # ======================================
 
             patient = form.save(commit=False)
-            patient.email = request.user.email
             patient.save()
         
             
@@ -225,38 +224,28 @@ Maintain healthy lifestyle habits.
 
             """
 
-            
-
-            recipient_email = patient.email
-
+            from django.conf import settings
             send_mail(
-
-                subject,
-
+               subject,
                 message,
-
-                'yourgmail@gmail.com',
-
-                [recipient_email],
-
+                settings.EMAIL_HOST_USER,
+                [patient.email],  
                 fail_silently=False
+                )
 
-            )
-
+   
             # ======================================
             # RESULT PAGE
             # ======================================
-
-        return render(request, 'result.html', {
-
+            return render(request, 'result.html', {
                 'result': result,
                 'probability': probability,
                 'risk_level': risk_level,
                 'alert_message': alert_message,
-                'tips': tips
-
+                'tips': tips,
+                'email_sent': True,
+                'patient_email': patient.email
             })
-
     else:
 
         

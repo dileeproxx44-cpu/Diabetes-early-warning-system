@@ -11,8 +11,9 @@ from django.contrib.auth import logout
 # =====================================
 # REGISTER VIEW
 # =====================================
-
 def register_view(request):
+
+    error = None
 
     if request.method == 'POST':
 
@@ -22,31 +23,47 @@ def register_view(request):
 
         password = request.POST.get('password')
 
-        # ==========================
+        # CHECK DUPLICATE USERNAME
+        if User.objects.filter(username=username).exists():
+
+            return render(
+                request,
+                'register.html',
+                {
+                    'error': '⚠ Username already exists'
+                }
+            )
+
+        # CHECK DUPLICATE EMAIL
+        if User.objects.filter(email=email).exists():
+
+            return render(
+                request,
+                'register.html',
+                {
+                    'error': '⚠ Email already registered'
+                }
+            )
+
         # CREATE USER
-        # ==========================
-
-        User.objects.create_user(
-
+        user = User.objects.create_user(
             username=username,
-
             email=email,
-
             password=password
-
         )
+
+        # AUTO LOGIN
+        login(request, user)
 
         return redirect('home')
 
     return render(
-
         request,
-
-        'register.html'
-
+        'register.html',
+        {
+            'error': error
+        }
     )
-
-
 # =====================================
 # LOGIN VIEW
 # =====================================
@@ -64,7 +81,6 @@ def login_view(request):
         # ==========================
         # AUTHENTICATE USER
         # ==========================
-
         user = authenticate(
 
             request,

@@ -6,12 +6,7 @@ SECRET_KEY = os.environ.get(
     "SECRET_KEY",
     "django-secret-key"
 )
-
-DEBUG = os.environ.get(
-    "DEBUG",
-    "False"
-) == "True"
-
+DEBUG = True
 ALLOWED_HOSTS = [
     ".onrender.com",
     "127.0.0.1",
@@ -78,9 +73,13 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
+]
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -95,7 +94,9 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
-
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")

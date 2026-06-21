@@ -1746,3 +1746,224 @@ table tr:hover td {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* =====================================================
+   EMAIL SUCCESS NOTIFICATION
+   ===================================================== */
+
+.email-success {
+  position: relative;
+  margin: 32px auto;
+  max-width: 680px;
+  padding: 28px 36px;
+  border-radius: 20px;
+  background: rgba(52, 211, 153, 0.08);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  border-left: 4px solid var(--safe);
+  overflow: hidden;
+  animation: successReveal 0.7s var(--transition) both;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Radial glow behind */
+.email-success::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at left, rgba(52,211,153,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Shimmer sweep */
+.email-success::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(52,211,153,0.1), transparent);
+  animation: welcomeShimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes successReveal {
+  from { opacity: 0; transform: translateY(-20px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Icon circle */
+.email-success-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(52, 211, 153, 0.15);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  animation: iconPop 0.5s var(--transition) 0.3s both;
+  box-shadow: 0 0 20px rgba(52,211,153,0.2);
+}
+
+@keyframes iconPop {
+  from { transform: scale(0) rotate(-180deg); }
+  to   { transform: scale(1) rotate(0deg); }
+}
+
+/* Text content */
+.email-success-body {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+.email-success-body p {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--safe);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 6px;
+}
+
+.email-success-body strong {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  display: block;
+  animation: revealUp 0.5s var(--transition) 0.4s both;
+}
+
+/* Live dot */
+.email-success-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--safe);
+  box-shadow: 0 0 10px var(--safe), 0 0 20px rgba(52,211,153,0.5);
+  flex-shrink: 0;
+  animation: dotBlink 1.5s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+/* =====================================================
+   ERROR MESSAGE — ALERT PANEL
+   ===================================================== */
+
+.error-message {
+  position: relative;
+  margin: 0 auto 24px;
+  padding: 20px 24px 20px 20px;
+  border-radius: 16px;
+  background: rgba(248, 113, 113, 0.08);
+  border: 1px solid rgba(248, 113, 113, 0.25);
+  border-left: 4px solid var(--danger);
+  overflow: hidden;
+  animation: errorReveal 0.5s var(--transition) both;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Radial glow */
+.error-message::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at left,
+    rgba(248,113,113,0.1) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+/* Shimmer sweep */
+.error-message::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(248,113,113,0.08),
+    transparent
+  );
+  animation: welcomeShimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes errorReveal {
+  from { opacity: 0; transform: translateX(-20px) scale(0.97); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+/* Warning icon circle */
+.error-message-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(248, 113, 113, 0.15);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  animation: iconShake 0.5s var(--transition) 0.2s both;
+  box-shadow: 0 0 16px rgba(248,113,113,0.2);
+}
+
+@keyframes iconShake {
+  0%   { transform: rotate(0deg) scale(0.5); opacity: 0; }
+  40%  { transform: rotate(-10deg) scale(1.1); opacity: 1; }
+  70%  { transform: rotate(6deg) scale(0.95); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+/* Error text */
+.error-message-text {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--danger);
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+}
+
+/* Pulsing danger dot */
+.error-message-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--danger);
+  box-shadow: 0 0 10px var(--danger), 0 0 20px rgba(248,113,113,0.4);
+  flex-shrink: 0;
+  animation: errorDotPulse 1.2s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes errorDotPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 8px var(--danger);
+  }
+  50% {
+    transform: scale(1.4);
+    box-shadow: 0 0 20px rgba(248,113,113,0.8);
+  }
+}
