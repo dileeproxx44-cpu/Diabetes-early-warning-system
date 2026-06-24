@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.core.mail import send_mail
 from .forms import PatientForm
 from .models import Patient, Prediction, Alert
 from django.http import HttpResponseForbidden
@@ -11,6 +10,8 @@ from .serializers import (PatientSerializer,PredictionSerializer,AlertSerializer
 from .models import (Patient,Prediction,Alert)
 import csv
 from django.http import HttpResponse
+from django.core.mail import send_mail
+from django.conf import settings
 
 # ======================================
 # HOME PAGE
@@ -223,11 +224,12 @@ Maintain healthy lifestyle habits.
             AI Healthcare System
             """
 
-            from django.core.mail import send_mail
-            from django.conf import settings
 
             try:
                 print("Patient Email:", patient.email)
+                print("EMAIL_HOST_USER =", settings.EMAIL_HOST_USER)
+                print("EMAIL_HOST_PASSWORD =", settings.EMAIL_HOST_PASSWORD)
+                print("PATIENT EMAIL =", patient.email)
 
                 send_mail(
                     subject,
