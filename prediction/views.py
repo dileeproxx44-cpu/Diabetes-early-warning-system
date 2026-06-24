@@ -221,8 +221,9 @@ Maintain healthy lifestyle habits.
 
             Stay Safe,
             AI Healthcare System
+            """
 
-                    from django.core.mail import send_mail
+            from django.core.mail import send_mail
             from django.conf import settings
 
             try:
