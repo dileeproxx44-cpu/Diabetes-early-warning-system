@@ -380,6 +380,7 @@ def alerts_api(request):
     )
 
     return Response(serializer.data)
+@login_required
 def history_view(request):
 
     predictions = Prediction.objects.filter(
@@ -391,6 +392,7 @@ def history_view(request):
         'history.html',
         {'predictions': predictions}
     )
+@login_required
 def profile_view(request):
 
     total_predictions = Prediction.objects.filter(

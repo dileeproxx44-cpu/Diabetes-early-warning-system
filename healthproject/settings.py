@@ -6,7 +6,7 @@ SECRET_KEY = os.environ.get(
     "SECRET_KEY",
     "django-secret-key"
 )
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = [
     ".onrender.com",
     "127.0.0.1",
@@ -84,6 +84,8 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = '/accounts/login/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
