@@ -222,16 +222,24 @@ Maintain healthy lifestyle habits.
             Stay Safe,
             AI Healthcare System
 
-            """
-
+                    from django.core.mail import send_mail
             from django.conf import settings
-            send_mail(
-               subject,
-                message,
-                settings.EMAIL_HOST_USER,
-                [patient.email],  
-                fail_silently=False
+
+            try:
+                print("Patient Email:", patient.email)
+
+                send_mail(
+                    subject,
+                    message,
+                    settings.EMAIL_HOST_USER,
+                    [patient.email],
+                    fail_silently=False
                 )
+
+                print("Email Sent Successfully")
+
+            except Exception as e:
+                print("EMAIL ERROR:", str(e))
 
    
             # ======================================
